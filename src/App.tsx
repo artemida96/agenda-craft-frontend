@@ -1,15 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Route, Routes,  } from 'react-router-dom';
+import Login from './features/authentication/login/pages/Login';
+import "./styles/_style.scss";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-       
-      </header>
-    </div>
+    <Routes>
+    <Route path="/" element={<Login />} />
+    <Route path="/login" element={<Login />} />
+  </Routes>
   );
-}
+};
 
 export default App;
