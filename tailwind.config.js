@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-const colors = require('tailwindcss/colors')
+const defaultTheme = require('tailwindcss/resolveConfig')(require('tailwindcss/defaultConfig')).theme
+const { colors, borderRadius, boxShadow, fontSize } = defaultTheme
+
 
 module.exports = {
   content: [
@@ -16,8 +18,12 @@ module.exports = {
       xl: '1280px',
       '2xl': '1440px', //2xl needs quotes because it starts with a number
     },
+    input: {
+      appearance: 'none',
+    },
     extend: {
       colors: {
+        'currentColor':colors.color,
         gray: {
           100: '#f8f9fa',
           200: '#e9ecef',
@@ -53,17 +59,51 @@ module.exports = {
         
       },
       backgroundColor:{
-        primary: '#f9d889',
+        primary: {
+          DEFAULT: '#f9c64e',
+          300: colors.yellow[300],
+          400:colors.yellow[400]
+        },
         secondary: '#77aaff',
         info: '#99ccff',
         warning: '#cc2f00',
         danger: '#ac0404',
         light: '#f8f9fa',
         dark: '#212529',
-     }
-    },
+     },
+  }
   },
   plugins: [require("@tailwindcss/forms")({
     strategy: 'class', // only generate classes
-  }),],
+  }),
+  function ({ addBase }) {
+    addBase({
+      'input': {'borderRadius':  "9999px", //it is rounded-full of tawilwind default
+      '&:focus': {
+         'outline-offset': '0px',
+         'outline-color':colors.red[900]
+        
+      },
+      
+    },
+    'input:text-gray': {
+      'color': colors.gray,
+    },
+    'button': {
+      'borderRadius': borderRadius.md, // Use your desired border radius value here
+      'box-shadow':boxShadow.md
+    },
+    'a':{
+      'color':colors.gray[200],
+      'font-weight': 700,
+      "font-size": "0.875rem",
+      "line-height": "1.25rem",
+      "display": "inline-block",
+      "vertical-align":"baseline",
+      '&:hover':{
+        'color':colors.yellow[300]
+      }
+    }
+ })
+},],
 };
