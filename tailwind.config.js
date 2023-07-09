@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require('tailwindcss/resolveConfig')(require('tailwindcss/defaultConfig')).theme
-const { colors, borderRadius, boxShadow, fontSize } = defaultTheme
+const { colors, borderRadius, boxShadow } = defaultTheme
 
 
 module.exports = {
@@ -71,6 +71,13 @@ module.exports = {
         light: '#f8f9fa',
         dark: '#212529',
      },
+     borderColor:{
+      primary:{
+        DEFAULT: '#f9c64e',
+        300: colors.yellow[300],
+        400:colors.yellow[400]
+      }
+     }
   }
   },
   plugins: [require("@tailwindcss/forms")({
@@ -93,6 +100,11 @@ module.exports = {
       'borderRadius': borderRadius.md, // Use your desired border radius value here
       'box-shadow':boxShadow.md
     },
+    'p':{
+      'font-size': '0.75rem',
+      'line-height': '1rem',
+      'color':colors.gray[400]
+    },
     'a':{
       'color':colors.gray[200],
       'font-weight': 700,
@@ -103,6 +115,10 @@ module.exports = {
       '&:hover':{
         'color':colors.yellow[300]
       }
+    },
+    'form':{
+      'borderRadius': borderRadius.lg,
+      'box-shadow':boxShadow.md
     }
  })
 },],
