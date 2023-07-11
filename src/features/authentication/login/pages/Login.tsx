@@ -1,5 +1,13 @@
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate(); 
+
+  const onRegister = () => {
+      let path = '/register'; 
+      navigate(path);
+    
+  }
   return (
     <div className="min-h-screen grid place-content-center bg-gradient-to-r from-red-500">
     <form className="bg-red-100 px-8 pb-6">
@@ -20,7 +28,7 @@ const Login = () => {
         <button className="btn-primary text-white py-2 px-4 mb-2 " type="button">
           Sign In
         </button>
-        <a className="text-center" href="#">
+        <a className="text-center" href="/forgot-password">
           Forgot Password?
         </a>
       </div>
@@ -28,7 +36,8 @@ const Login = () => {
           <p className="text-sm">
           Don't have an account?
           </p>
-        <button className="brd-primary outline-none focus:outline-none px-4 " type="button">
+        <button className="brd-primary outline-none focus:outline-none px-4 " type="button" onClick={onRegister}
+        >
           Register
         </button>
     </div>
