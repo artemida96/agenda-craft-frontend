@@ -98,6 +98,11 @@ module.exports = {
       'borderRadius': borderRadius.md, // Use your desired border radius value here
       'box-shadow':boxShadow.md
     },
+    'span':{
+      'font-size':'1rem',
+      'line-height': '1rem',
+      'color':colors.gray[400]
+    },
     'p':{
       'font-size': '0.75rem',
       'line-height': '1rem',
