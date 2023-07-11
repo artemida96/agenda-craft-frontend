@@ -1,0 +1,19 @@
+@import 'react-datepicker/dist/react-datepicker.css'; // Import the original React Date Picker CSS
+
+
+$datepicker__border-radius: 2rem !important;
+
+  
+  .react-datepicker {
+    .react-datepicker__header {
+        background-color: #f9d889
+      }
+    .react-datepicker__month {
+        background-color: #dea7a7
+    }
+   
+    .react-datepicker__month-container {
+        border-radius: 2rem!important;
+
+      }
+  }

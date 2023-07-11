@@ -4,9 +4,7 @@ const { colors, borderRadius, boxShadow } = defaultTheme
 
 
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content:  ["./src/**/*.{js,jsx,ts,tsx}", "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js"],
   theme: {
     fontFamily: {
       sans: ['Graphik', 'sans-serif'],
@@ -119,6 +117,9 @@ module.exports = {
     'form':{
       'borderRadius': borderRadius.lg,
       'box-shadow':boxShadow.md
+    },
+    'select':{
+      'borderRadius':borderRadius.md
     }
  })
 },],

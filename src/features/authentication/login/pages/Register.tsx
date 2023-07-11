@@ -1,3 +1,5 @@
+import DateSelect from "shared/datePicker/DateSelect";
+
 const Register = ()=>{
     return (<div className="min-h-screen grid place-content-center bg-gradient-to-r from-red-500">
         <form className="bg-red-100 px-8 py-6 pb-6 flex flex-col">
@@ -20,12 +22,12 @@ const Register = ()=>{
                 </label>
                 <input className="border border-red-500 w-full py-2 px-6 " id="password" type="password"  placeholder="******************"/>
              </div>
-
              <div className="mt-4">
-                <p className="text-center text-white">
-                   I accept the Terms and Conditions
-                </p>
-             </div>
+                 <label className="block text-gray-700 text-sm font-bold mb-2" >
+                    Select birthday
+                 </label>
+                <DateSelect ></DateSelect>
+               </div>
              <div className="mt-4 self-center">
                 <button className="btn-primary text-white py-2 px-4 mb-2 " type="button">
                     Create an account
