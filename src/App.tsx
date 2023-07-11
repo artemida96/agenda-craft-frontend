@@ -1,7 +1,7 @@
 import { Route, Routes,  } from 'react-router-dom';
 import Login from './features/authentication/login/pages/Login';
-import Register from 'features/authentication/login/pages/Register';
-import ForgotPassword from 'features/authentication/login/pages/ForgotPassword';
+import Register from 'features/authentication/register/pages/Register';
+import ForgotPassword from 'features/authentication/forgotPassword/pages/ForgotPassword';
 const App = () => {
   return (
     <Routes>
