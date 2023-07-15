@@ -10,4 +10,6 @@
     .brd-primary{
      @apply text-white border border-primary font-semibold  hover:bg-primary-300 hover:text-white active:bg-primary-300 
     }
-}    
+   
+}
+
