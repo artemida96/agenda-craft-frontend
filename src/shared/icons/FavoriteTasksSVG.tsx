@@ -2,7 +2,6 @@ import IconType from "./types/IconType";
 
 const FavoriteTasksSVG:  React.FC<IconType>  = ({width, height,color})  => (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
       width={width}
       height={height}
       className="w-6 h-6"

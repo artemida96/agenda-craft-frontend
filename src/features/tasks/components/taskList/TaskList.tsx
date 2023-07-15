@@ -1,4 +1,4 @@
-import TaskDto from "../dto/TaskDto";
+import TaskDto from "../../dto/TaskDto";
 import TaskListItem from "./TaskListItem";
 
 
@@ -40,8 +40,26 @@ const TaskList = () =>{
         isCompleted: false
     },
 
+    {
+        id:"5",
+        slug:'slug-5',
+        title: 'fifth Task',
+        date: new Date(),
+        description: 'fifth task',
+        isFavorite: true,
+        isCompleted: false
+    },
+    {
+        id:"6",
+        slug:'slug-6',
+        title: 'sixth Task',
+        date: new Date(),
+        description: 'sixth task',
+        isFavorite: true,
+        isCompleted: false
+    },
     ] as unknown as TaskDto[];
-    return <div className="p-8">
+    return <div className="p-8  overflow-y-auto  max-h-[55rem]">
         {taskList.map((taskItem,index) => {
             return <TaskListItem taskItem={taskItem} index={index}/>
     })}</div>

@@ -1,16 +1,17 @@
-import { format } from "date-fns";
-import TaskList from "features/tasks/components/TaskList";
+import TaskView from "features/tasks/TaskView";
+import TaskGrid from "features/tasks/components/taskGrid/TaskGrid";
 import AllTasksSVG from "shared/icons/AllTasksSVG";
 import CompletedTasksSVG from "shared/icons/CompletedTasksSVG";
 import DailySVG from "shared/icons/DailySVG";
 import Icon from "shared/icons/DailySVG";
 import FavoriteTasksSVG from "shared/icons/FavoriteTasksSVG";
+import GridIcon from "shared/icons/GridIcon";
 import LogoutSVG from "shared/icons/LogoutSVG";
 import UncompletedTasksSVG from "shared/icons/UncompletedTasksSVG";
 
 export default function SidenavBar() {
     return (
-        <div className="flex">
+        <div className="flex ">
             <div className="flex flex-col h-screen p-3 bg-light shadow w-60">
                 <div className="space-y-8">
                     <div className="flex items-center">
@@ -67,8 +68,7 @@ export default function SidenavBar() {
                 </div>
             </div>
             <div className="container bg-gray-200 ">
-                
-                <TaskList/>
+                <TaskView/>
             </div>
                 <div className="p-2 flex flex-col">
                     <div className="flex-1">

@@ -1,8 +1,8 @@
 import { format } from "date-fns"
-import TaskDto from "../dto/TaskDto"
 import FavoriteSVG from "shared/icons/FavoriteSVG"
 import TrashSVG from "shared/icons/TrashSVG"
 import EditSVG from "shared/icons/EditSVG"
+import TaskDto from "features/tasks/dto/TaskDto";
 interface TaskListItemType{
     taskItem:TaskDto;
     index:number;
