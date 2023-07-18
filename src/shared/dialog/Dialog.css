@@ -1,0 +1,19 @@
+
+
+.modal {
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    width: 56rem;
+    height:36rem;
+    max-width: 600px;
+    border: 2px solid #ccc;
+    border-radius: 1rem;
+    padding: 20px;
+    background-color:  theme('backgroundColor.primary.DEFAULT');
+    box-shadow: 0 2px 0.5rem theme('backgroundColor.gray[600]');
+    outline: none;
+  }
