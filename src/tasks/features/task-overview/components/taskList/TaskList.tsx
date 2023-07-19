@@ -33,9 +33,9 @@ export const TaskList = () => {
     {
       id: "4",
       slug: "slug-4",
-      title: "I am gonna leave !",
+      title: "Im dying!",
       date: new Date(),
-      description: "Bye Bye Consalio!",
+      description: "Bye Bye",
       isFavorite: true,
       isCompleted: false,
     },

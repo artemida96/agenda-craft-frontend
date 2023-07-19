@@ -6,14 +6,20 @@ import TaskDto from "tasks/domain/dto/TaskDto";
 import Dialog from "shared/dialog/Dialog";
 import { useState } from "react";
 import { TaskFormDialog } from "tasks/ui/task-form-dialog/TaskFormDialog";
+import WarningDialog from "shared/warning-dialog/WarningDialog";
 interface TaskListItemType {
   taskItem: TaskDto;
 }
 const TaskListItem = ({ taskItem }: TaskListItemType) => {
   const [editTask, setEditTask] = useState(false);
+  const [deleteTask, setDeleteTask] = useState(false);
 
   const onEditTask = (action: boolean) => {
     setEditTask(action);
+  };
+
+  const onDeleteTask = (action: boolean) => {
+    setDeleteTask(action);
   };
 
   return (
@@ -26,7 +32,9 @@ const TaskListItem = ({ taskItem }: TaskListItemType) => {
 
           <div className="flex self-end gap-x-2">
             <FavoriteSVG width={24} height={24} />
-            <TrashSVG width={24} height={24} />
+            <button onClick={() => onDeleteTask(true)}>
+              <TrashSVG width={24} height={24} />
+            </button>
             <button onClick={() => onEditTask(true)}>
               <EditSVG width={24} height={24} />
             </button>
@@ -41,6 +49,11 @@ const TaskListItem = ({ taskItem }: TaskListItemType) => {
           content={<TaskFormDialog {...taskItem} />}
         />
       )}
+      <WarningDialog
+        warningDialogIsOpen={deleteTask}
+        itemTitle={taskItem.title}
+        onUpdate={() => onDeleteTask(false)}
+      />
     </div>
   );
 };
