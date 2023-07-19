@@ -33,9 +33,9 @@ export const TaskList = () => {
     {
       id: "4",
       slug: "slug-4",
-      title: "fourth Task",
+      title: "I am gonna leave !",
       date: new Date(),
-      description: "fourth task",
+      description: "Bye Bye Consalio!",
       isFavorite: true,
       isCompleted: false,
     },
@@ -61,8 +61,8 @@ export const TaskList = () => {
   ] as unknown as TaskDto[];
   return (
     <div className="p-8  overflow-y-auto  max-h-[55rem]">
-      {taskList.map((taskItem, index) => {
-        return <TaskListItem taskItem={taskItem} index={index} />;
+      {taskList.map((taskItem) => {
+        return <TaskListItem taskItem={taskItem} />;
       })}
     </div>
   );

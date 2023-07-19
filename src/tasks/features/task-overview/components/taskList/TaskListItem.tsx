@@ -3,30 +3,44 @@ import FavoriteSVG from "shared/icons/FavoriteSVG";
 import TrashSVG from "shared/icons/TrashSVG";
 import EditSVG from "shared/icons/EditSVG";
 import TaskDto from "tasks/domain/dto/TaskDto";
+import Dialog from "shared/dialog/Dialog";
+import { useState } from "react";
+import { TaskFormDialog } from "tasks/ui/task-form-dialog/TaskFormDialog";
 interface TaskListItemType {
   taskItem: TaskDto;
-  index: number;
 }
-const TaskListItem = ({ taskItem, index }: TaskListItemType) => {
-  return (
-    <div
-      className={
-        index === 0
-          ? "mt-4 p-2 bg-primary rounded-lg drop-shadow-xl"
-          : "mt-4 p-2 bg-white rounded-lg drop-shadow-xl"
-      }
-    >
-      <div className="flex flex-col gap-2 p-4" key={taskItem.id}>
-        <span>Title: {taskItem.title}</span>
-        <span>Description: {taskItem.description}</span>
-        <span>Date: {format(taskItem.date, "yyyy-MM-dd")}</span>
+const TaskListItem = ({ taskItem }: TaskListItemType) => {
+  const [editTask, setEditTask] = useState(false);
 
-        <div className="flex self-end gap-x-2">
-          <FavoriteSVG width={24} height={24} />
-          <TrashSVG width={24} height={24} />
-          <EditSVG width={24} height={24} />
+  const onEditTask = (action: boolean) => {
+    setEditTask(action);
+  };
+
+  return (
+    <div>
+      <div className="mt-4 p-2 bg-white rounded-lg drop-shadow-xl   hover:bg-primary delay-75">
+        <div className="flex flex-col gap-2 p-4" key={taskItem.id}>
+          <span>Title: {taskItem.title}</span>
+          <span>Description: {taskItem.description}</span>
+          <span>Date: {format(taskItem.date, "yyyy-MM-dd")}</span>
+
+          <div className="flex self-end gap-x-2">
+            <FavoriteSVG width={24} height={24} />
+            <TrashSVG width={24} height={24} />
+            <button onClick={() => onEditTask(true)}>
+              <EditSVG width={24} height={24} />
+            </button>
+          </div>
         </div>
       </div>
+      {editTask && (
+        <Dialog
+          dialogIsOpen={editTask}
+          header={"Edit Task"}
+          onUpdate={() => onEditTask(false)}
+          content={<TaskFormDialog {...taskItem} />}
+        />
+      )}
     </div>
   );
 };

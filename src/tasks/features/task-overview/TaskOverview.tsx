@@ -6,7 +6,6 @@ import { TaskGrid } from "./components/taskGrid/TaskGrid";
 import { TaskList } from "./components/taskList/TaskList";
 import { TaskFormDialog } from "tasks/ui/task-form-dialog/TaskFormDialog";
 import Dialog from "shared/dialog/Dialog";
-import Modal from "react-modal";
 
 export const TaskOverview = () => {
   const [isGridTaskViewClicked, setIsGridTaskView] = useState(false);
@@ -21,29 +20,37 @@ export const TaskOverview = () => {
     setAddTask(action);
   };
   return (
-    <div className="ml-4 mt-4">
-      <button className="button mr-2" onClick={handleListTaskViewClick}>
-        <ListIcon
-          width={24}
-          height={24}
-          color={!isGridTaskViewClicked ? "#cc9f13" : ""}
-        />
-      </button>
-      <button className="button" onClick={handleGridTaskViewClick}>
-        <GridIcon
-          width={24}
-          height={24}
-          color={isGridTaskViewClicked ? "#cc9f13" : ""}
-        />
-      </button>
-      <span className="ml-8">{format(new Date(), "dd/MM/yyyy")}</span>
+    <>
+      <div className="flex items-center justify-between ml-4 mt-4 pb-2">
+        <div className="flex">
+          <button className="button mr-2" onClick={handleListTaskViewClick}>
+            <ListIcon
+              width={24}
+              height={24}
+              color={!isGridTaskViewClicked ? "#cc9f13" : ""}
+            />
+          </button>
+          <button className="button" onClick={handleGridTaskViewClick}>
+            <GridIcon
+              width={24}
+              height={24}
+              color={isGridTaskViewClicked ? "#cc9f13" : ""}
+            />
+          </button>
+        </div>
+        <div className="flex ">
+          <span className="ml-8">{format(new Date(), "dd/MM/yyyy")}</span>
+        </div>
+        <div>
+          <button
+            className="bg-primary p-2 w-24 mr-8 "
+            onClick={() => onAddTask(true)}
+          >
+            Add a task
+          </button>
+        </div>
+      </div>
 
-      <button
-        className="ml-8 bg-primary p-2 w-24"
-        onClick={() => onAddTask(true)}
-      >
-        Add a task
-      </button>
       <Dialog
         dialogIsOpen={addTask}
         header={"Add Task"}
@@ -51,6 +58,6 @@ export const TaskOverview = () => {
         content={<TaskFormDialog />}
       ></Dialog>
       {isGridTaskViewClicked ? <TaskGrid /> : <TaskList />}
-    </div>
+    </>
   );
 };
