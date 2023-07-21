@@ -46,7 +46,7 @@ export const TaskList = () => {
       title: "fifth Task",
       date: new Date(),
       description: "fifth task",
-      isFavorite: true,
+      isFavorite: false,
       isCompleted: false,
     },
     {
@@ -55,7 +55,7 @@ export const TaskList = () => {
       title: "sixth Task",
       date: new Date(),
       description: "sixth task",
-      isFavorite: true,
+      isFavorite: false,
       isCompleted: false,
     },
   ] as unknown as TaskDto[];

@@ -31,7 +31,13 @@ const TaskListItem = ({ taskItem }: TaskListItemType) => {
           <span>Date: {format(taskItem.date, "yyyy-MM-dd")}</span>
 
           <div className="flex self-end gap-x-2">
-            <FavoriteSVG width={24} height={24} />
+            <button>
+              <FavoriteSVG
+                width={24}
+                height={24}
+                color={taskItem.isFavorite ? "#cc9f13" : "#6c757d"}
+              />
+            </button>
             <button onClick={() => onDeleteTask(true)}>
               <TrashSVG width={24} height={24} />
             </button>
