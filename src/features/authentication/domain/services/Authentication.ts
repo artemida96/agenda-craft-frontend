@@ -1,9 +1,9 @@
 import axios from "axios";
 import { AccountDto } from "../../../../dto/AccountDto";
 
-const API_BASE_URL = "/api/auth"; 
+const API_BASE_URL = "/api/auth";
 
-export const  register  = async (createAccountDto: {
+const register = async (createAccountDto: {
   firstName: string;
   lastName: string;
   username: string;
@@ -22,3 +22,17 @@ export const  register  = async (createAccountDto: {
     throw new Error("Failed to create user");
   }
 };
+
+const login = async (loginDto: {
+  username: string;
+  password: string;
+}): Promise<{ token: string }> => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}/login`, loginDto);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to login");
+  }
+};
+
+export {login,register};
