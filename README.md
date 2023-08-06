@@ -1,46 +1,51 @@
-# Getting Started with Create React App
+# Agenda Craft Web Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a web application built with React and TypeScript that allows users to login, register, create tasks, and edit them. The application utilizes React hooks for state management and is styled using Tailwind CSS.
 
-## Available Scripts
+## Technologies Used
 
-In the project directory, you can run:
+- React
+- TypeScript
+- React Hooks
+- Tailwind CSS
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To run the application, follow these steps:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. Clone the repository to your local machine.
+2. Navigate to the project directory.
+3. Install dependencies by running `npm install`.
+4. Start the development server with `npm start`.
+5. Open your web browser and go to `http://localhost:3000` to access the application.
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- User Registration: Users can create an account by providing a username, email, and password.
 
-### `npm run build`
+- User Login: Existing users can log in using their registered username and password.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Create Task: Logged-in users can create tasks by providing a task name and description.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Edit Task: Users can edit their existing tasks, updating the task name and description.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Filter by Due Date: The dashboard section allows users to filter tasks based on their due date. Users can select a specific due date from a dropdown or provide a date range to view tasks due within that range.
 
-### `npm run eject`
+- Filter by Status: Users can also filter tasks based on their status, such as "completed," "in progress," or "not started."
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Usage
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Registration**: On the homepage, click the "Register" link to access the registration form. Fill in the required details and click "Register" to create an account.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+2. **Login**: After registration, click the "Login" link to access the login form. Enter your username and password and click "Login" to access your account.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+3. **Create Task**: Once logged in, click the "Create Task" button to create a new task. Enter the task name and description, then click "Save" to add the task.
 
-## Learn More
+4. **Edit Task**: To edit an existing task, click on the task in the task list. The task details will be displayed in an edit form. Make the necessary changes and click "Save" to update the task.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+5. **Filter Tasks**: Use the filters in the dashboard section to view tasks based on their due date or status. You can select a specific due date from the dropdown or provide a date range. Additionally, you can filter tasks based on their status (e.g., "completed," "in progress," "not started").
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contribution
+
+If you find any issues or have suggestions for improvements, feel free to open an issue or create a pull request. Contributions are welcome!
+
