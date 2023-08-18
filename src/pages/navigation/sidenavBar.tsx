@@ -4,9 +4,25 @@ import DailySVG from "components/shared/icons/DailySVG";
 import FavoriteTasksSVG from "components/shared/icons/FavoriteTasksSVG";
 import LogoutSVG from "components/shared/icons/LogoutSVG";
 import UncompletedTasksSVG from "components/shared/icons/UncompletedTasksSVG";
+import { logout } from "features/authentication/domain/services/AuthenticationApiService";
 import { TaskOverview } from "pages/tasks/TaskOverview";
+import { Provider } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import store from "store/Store";
 
 export const SidenavBar = () => {
+  const navigate = useNavigate();
+
+  const onLogout = async () => {
+    try {
+      await logout();
+      localStorage.removeItem("authToken");
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
+
   return (
     <div className="flex ">
       <div className="flex flex-col h-screen p-3 bg-light shadow w-60">
@@ -82,14 +98,21 @@ export const SidenavBar = () => {
         </div>
       </div>
       <div className="container bg-gray-200 ">
-        <TaskOverview />
+        <Provider store={store}>
+          <TaskOverview />
+        </Provider>
       </div>
       <div className="p-2 flex flex-col">
-        <div className="flex-1">Welcome Artemis</div>
+        <div className="flex-1">Welcome User</div>
         <div className="flex">
-          <div className="flex-1 flex gap-x-2">
-            <LogoutSVG width={24} height={24} />
-            Logout
+          <div className="self-center">
+            <button
+              className="bg-primary p-2 w-24 ml-6 flex items-center "
+              onClick={onLogout}
+            >
+              <LogoutSVG width={24} height={24} />
+              Logout
+            </button>
           </div>
         </div>
       </div>

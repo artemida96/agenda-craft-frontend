@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { TaskGrid } from "../taskGrid/TaskGrid";
 import { TaskList } from "../taskList/TaskList";
@@ -6,8 +6,22 @@ import GridIcon from "components/shared/icons/GridIcon";
 import ListIcon from "components/shared/icons/ListIcon";
 import { TaskForm } from "features/tasks/components/TaskForm";
 import Dialog from "components/shared/dialog/Dialog";
+import { fetch } from "features/tasks/domain/services/TaskApiService";
+import { useDispatch } from "react-redux";
+import { fetchTasksSuccess } from "features/tasks/reducers/TasksReducer";
 
 export const TaskOverview = () => {
+  const dispatchTask = useDispatch();
+
+  const fetchTasks = async () => {
+    try {
+      const tasks = await fetch();
+      dispatchTask(fetchTasksSuccess(tasks));
+    } catch (error) {
+      console.error("Error fetching tasks:", error);
+    }
+  };
+
   const [isGridTaskViewClicked, setIsGridTaskView] = useState(false);
   const [addTask, setAddTask] = useState(false);
   const handleGridTaskViewClick = () => {
@@ -19,6 +33,14 @@ export const TaskOverview = () => {
   const onAddTask = (action: boolean) => {
     setAddTask(action);
   };
+
+  const onSubmit = async (e: any) => {
+    setAddTask(false);
+  };
+
+  useEffect(() => {
+    fetchTasks(); // Call the async function to fetch tasks when the component mounts
+  }, []);
   return (
     <>
       <div className="flex items-center justify-between ml-4 mt-4 pb-2">
@@ -55,7 +77,7 @@ export const TaskOverview = () => {
         dialogIsOpen={addTask}
         header={"Add Task"}
         onUpdate={() => onAddTask(false)}
-        content={<TaskForm />}
+        content={<TaskForm onSubmit={onSubmit} />}
       ></Dialog>
       {isGridTaskViewClicked ? <TaskGrid /> : <TaskList />}
     </>

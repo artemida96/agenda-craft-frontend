@@ -20,7 +20,6 @@ const TaskGridItem = ({ taskItem, index }: TaskGridItemType) => {
       <div className="flex-1 flex flex-col">
         <span>Title: {taskItem.title}</span>
         <span>Description: {taskItem.description}</span>
-        <span>Date: {format(taskItem.date, "yyyy-MM-dd")}</span>
       </div>
 
       <div className="flex self-end">

@@ -1,7 +1,7 @@
 import DateSelect from "components/shared/datePicker/DateSelect";
 import EyeIcon from "components/shared/icons/EyeIcon";
 import EyeSlashIcon from "components/shared/icons/EyeSlashIcon";
-import { register } from "features/authentication/domain/services/Authentication";
+import { register } from "features/authentication/domain/services/AuthenticationApiService";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

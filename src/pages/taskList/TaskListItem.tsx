@@ -23,13 +23,16 @@ const TaskListItem = ({ taskItem }: TaskListItemType) => {
     setDeleteTask(action);
   };
 
+  const onSubmit = async (e: any) => {
+    setEditTask(false);
+  };
+
   return (
     <div>
       <div className="mt-4 p-2 bg-white rounded-lg drop-shadow-xl   hover:bg-primary delay-75">
         <div className="flex flex-col gap-2 p-4" key={taskItem.id}>
           <span>Title: {taskItem.title}</span>
           <span>Description: {taskItem.description}</span>
-          <span>Date: {format(taskItem.date, "yyyy-MM-dd")}</span>
 
           <div className="flex self-end gap-x-2">
             <button>
@@ -53,7 +56,7 @@ const TaskListItem = ({ taskItem }: TaskListItemType) => {
           dialogIsOpen={editTask}
           header={"Edit Task"}
           onUpdate={() => onEditTask(false)}
-          content={<TaskForm {...taskItem} />}
+          content={<TaskForm task={taskItem} onSubmit={onSubmit} />}
         />
       )}
       <WarningDialog

@@ -1,7 +1,10 @@
 import ItemWithSlug from "components/shared/types/ItemWithSlug";
+import StatusEnum from "./StatusEnum";
 
 interface Task extends ItemWithSlug {
-  date: Date;
+  dueDate: Date;
+  dateCrated: Date;
+  status: StatusEnum;
   description?: string;
   isFavorite?: boolean;
   isCompleted?: boolean;
