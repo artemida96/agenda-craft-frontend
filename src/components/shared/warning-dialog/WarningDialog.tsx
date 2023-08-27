@@ -37,10 +37,18 @@ const WarningDialog = (props: DialogType<any>) => {
           <span className="font-bold ml-2 ">{props.itemTitle} ?</span>
         </div>
         <div className="flex flex-1 flex-shrink-0 flex-wrap content-end items-center justify-end gap-x-2">
-          <button type="button" className="bg-light p-2 inline-block ">
+          <button
+            onClick={closeDialog}
+            type="button"
+            className="bg-light p-2 inline-block "
+          >
             Cancel
           </button>
-          <button type="button" className="bg-primary p-2 inline-block ">
+          <button
+            onClick={closeDialog}
+            type="button"
+            className="bg-primary p-2 inline-block "
+          >
             Delete
           </button>
         </div>

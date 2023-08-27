@@ -10,12 +10,16 @@ import { fetch } from "features/tasks/domain/services/TaskApiService";
 import { useDispatch } from "react-redux";
 import { fetchTasksSuccess } from "features/tasks/reducers/TasksReducer";
 
-export const TaskOverview = () => {
+interface TaskOverviewProps {
+  queryParams?: Record<string, string>;
+}
+
+export const TaskOverview = (queryParams: TaskOverviewProps) => {
   const dispatchTask = useDispatch();
 
-  const fetchTasks = async () => {
+  const fetchTasks = async (filters?: Record<string, string>) => {
     try {
-      const tasks = await fetch();
+      const tasks = await fetch(filters);
       dispatchTask(fetchTasksSuccess(tasks));
     } catch (error) {
       console.error("Error fetching tasks:", error);
@@ -39,8 +43,11 @@ export const TaskOverview = () => {
   };
 
   useEffect(() => {
-    fetchTasks(); // Call the async function to fetch tasks when the component mounts
-  }, []);
+    const urlParams = new URLSearchParams(window.location.search);
+    const filters = Object.fromEntries(urlParams.entries());
+    fetchTasks(filters);
+  }, [window.location.search]);
+
   return (
     <>
       <div className="flex items-center justify-between ml-4 mt-4 pb-2">

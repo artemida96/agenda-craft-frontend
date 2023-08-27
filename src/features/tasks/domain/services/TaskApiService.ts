@@ -25,12 +25,28 @@ const edit = async (task: Task) => {
   }
 };
 
-const fetch = async () => {
+const fetch = async (queryParams?: Record<string, string>) => {
   try {
-    const response = await axiosInstance.get(`${API_BASE_URL}`);
+    const response = await axiosInstance.get(`${API_BASE_URL}`, {
+      params: queryParams,
+    });
     return response.data as Task[];
   } catch (error) {
     throw new Error("Failed to get tasks");
   }
 };
-export { create, edit, fetch };
+
+const remove = async (taskId: string) => {
+  try {
+    const response = await axiosInstance.delete(
+      `${API_BASE_URL}/task/${taskId}`
+    );
+    if (response.status === 200) {
+      return true;
+    }
+    return false;
+  } catch (error) {
+    throw new Error("Failed to get tasks");
+  }
+};
+export { create, edit, fetch, remove };

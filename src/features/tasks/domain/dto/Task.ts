@@ -3,7 +3,7 @@ import StatusEnum from "./StatusEnum";
 
 interface Task extends ItemWithSlug {
   dueDate: Date;
-  dateCrated: Date;
+  dateCreated: Date;
   status: StatusEnum;
   description?: string;
   isFavorite?: boolean;

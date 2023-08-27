@@ -3,6 +3,7 @@ import Login from "pages/login/Login";
 import { SidenavBar } from "pages/navigation/sidenavBar";
 import NotFound from "pages/notFound/NotFound";
 import Register from "pages/register/Register";
+import { TaskOverview } from "pages/tasks/TaskOverview";
 import { useEffect } from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 const App = () => {
@@ -23,7 +24,14 @@ const App = () => {
       <Route
         path="/dashboard"
         element={token ? <SidenavBar /> : <Navigate to="/login" />}
-      />
+      >
+        {/* Add the Dashboard home */}
+        <Route path="daily-tasks" element={<TaskOverview />} />
+        <Route path="favorite-tasks" element={<TaskOverview />} />
+        <Route path="completed-tasks" element={<TaskOverview />} />
+        <Route path="unCompleted-tasks" element={<TaskOverview />} />
+        {/* Nested route for Daily Tasks */}
+      </Route>
       <Route path="/*" element={<NotFound />} />
     </Routes>
   );

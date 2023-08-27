@@ -91,12 +91,20 @@ module.exports = {
           borderRadius: "9999px", //it is rounded-full of tawilwind default
           "&:focus": {
             "outline-offset": "0px",
-            "outline-color": colors.red[900],
+            "outline-color": colors.yellow[400],
+          },
+        },
+        textarea: {
+          borderRadius: "9999px", //it is rounded-full of tawilwind default
+          "&:focus": {
+            "outline-offset": "0px",
+            "outline-color": colors.yellow[400],
           },
         },
         "input:text-gray": {
           color: colors.gray,
         },
+
         button: {
           borderRadius: borderRadius.md, // Use your desired border radius value here
           "box-shadow": boxShadow.md,

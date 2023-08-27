@@ -5,6 +5,7 @@ import { useReducer } from "react";
 import { CreateTask } from "../domain/dto/CreateTask";
 import { useDispatch } from "react-redux";
 import { addTask, editTask } from "../reducers/TasksReducer";
+import DateSelect from "components/shared/datePicker/DateSelect";
 
 interface TaskFormProps {
   task?: Task;
@@ -14,7 +15,7 @@ interface TaskFormProps {
 export const TaskForm = (props: TaskFormProps) => {
   const initTaskForm = {
     title: props.task?.id ? props.task.title : "",
-    dueDate: props.task?.id ? props.task.dueDate : new Date(),
+    dueDate: props.task?.id ? new Date(props.task.dueDate) : new Date(),
     description: props.task?.id ? props.task.description : "",
     status: props.task?.id ? props.task.status : StatusEnum.PENDING,
     isFavorite: props.task?.id ? props.task.isFavorite : false,
@@ -27,8 +28,12 @@ export const TaskForm = (props: TaskFormProps) => {
   );
 
   const onValChange = (event: any) => {
-    const { name, value } = event.target;
-    dispatch({ [name]: value });
+    const { name, value, type, checked } = event.target;
+    if (type === "checkbox") {
+      dispatch({ [name]: checked });
+    } else {
+      dispatch({ [name]: value });
+    }
   };
 
   const onDateChange = (newDate: Date) => {
@@ -56,7 +61,7 @@ export const TaskForm = (props: TaskFormProps) => {
         Title
       </label>
       <input
-        className="w-full py-2 px-6 mb-2"
+        className="w-full py-2 px-6 mb-2 border border-gray-300"
         id="titleTaskId"
         type="text"
         placeholder="title of your todo task"
@@ -79,6 +84,11 @@ export const TaskForm = (props: TaskFormProps) => {
       <label className="block text-gray-700 text-sm font-bold mb-2">
         Due Date
       </label>
+
+      <DateSelect
+        selectedDate={taskFormValue.dueDate}
+        onDateSelect={onDateChange} // Corrected this line
+      />
       <div className="mb-2" />
 
       <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -102,11 +112,11 @@ export const TaskForm = (props: TaskFormProps) => {
           Favorite
         </label>
         <input
+          className="accent-yellow-300 ml-2"
           type="checkbox"
           name="isFavorite"
           checked={taskFormValue.isFavorite}
           onChange={onValChange}
-          className="ml-2"
         />
       </div>
       <div className="flex justify-center mt-4">
