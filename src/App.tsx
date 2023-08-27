@@ -1,6 +1,6 @@
 import ForgotPassword from "pages/forgotPassword/ForgotPassword";
 import Login from "pages/login/Login";
-import { SidenavBar } from "pages/navigation/sidenavBar";
+import SidenavBar from "pages/navigation/SidenavBar";
 import NotFound from "pages/notFound/NotFound";
 import Register from "pages/register/Register";
 import { TaskOverview } from "pages/tasks/TaskOverview";
