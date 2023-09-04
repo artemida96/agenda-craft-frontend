@@ -3,11 +3,16 @@ import Modal from "react-modal";
 import "./Dialog.css";
 import CancelIcon from "../icons/CancelIcon";
 
+const modalSmall = "w-2/3";
+const modalMedium = "w-1/2";
+const modalLarge = "w-1/3";
+
 export interface DialogType<T> {
   header: string;
   dialogIsOpen: boolean;
   content: T;
   onUpdate(): void;
+  contentWidth?: string;
 }
 const Dialog = (props: DialogType<any>) => {
   const [_, setDialogIsOpen] = useState(props.dialogIsOpen);
@@ -19,7 +24,13 @@ const Dialog = (props: DialogType<any>) => {
 
   return (
     <Modal
-      className="dialogModal flex flex-col  sm:w-2/3 md:w-1/2 lg:w-1/3 xl:w-1/4"
+      className={`dialogModal flex flex-col ${
+        props.contentWidth === "small"
+          ? modalSmall
+          : props.contentWidth === "medium"
+          ? modalMedium
+          : modalLarge
+      }`}
       isOpen={props.dialogIsOpen}
       onRequestClose={closeDialog}
       ariaHideApp={false}

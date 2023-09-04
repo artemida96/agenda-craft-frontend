@@ -1,3 +1,5 @@
+import Task from "features/tasks/domain/dto/Task";
+
 export interface AccountDto {
   id: string;
   slug: string;
@@ -6,5 +8,6 @@ export interface AccountDto {
   username: string;
   email: string;
   birthDate: Date;
-  roles: string[];
+  roles?: string[];
+  tasks?: Task[];
 }

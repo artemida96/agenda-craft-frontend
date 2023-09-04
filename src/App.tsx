@@ -1,3 +1,4 @@
+import { UserProvider } from "context/UserContext";
 import ForgotPassword from "pages/forgotPassword/ForgotPassword";
 import Login from "pages/login/Login";
 import SidenavBar from "pages/navigation/SidenavBar";
@@ -23,7 +24,15 @@ const App = () => {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route
         path="/dashboard"
-        element={token ? <SidenavBar /> : <Navigate to="/login" />}
+        element={
+          token ? (
+            <UserProvider>
+              <SidenavBar />
+            </UserProvider>
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
       >
         {/* Add the Dashboard home */}
         <Route path="daily-tasks" element={<TaskOverview />} />

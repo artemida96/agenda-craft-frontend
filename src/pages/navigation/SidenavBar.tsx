@@ -9,6 +9,9 @@ import FavoriteTasksSVG from "components/shared/icons/FavoriteTasksSVG";
 import CompletedTasksSVG from "components/shared/icons/CompletedTasksSVG";
 import UncompletedTasksSVG from "components/shared/icons/UncompletedTasksSVG";
 import LogoutSVG from "components/shared/icons/LogoutSVG";
+import { UserProvider, useUserContext } from "context/UserContext";
+import Dialog from "components/shared/dialog/Dialog";
+import SettingsForm from "features/users/components/SettingsForm";
 
 const SidenavButton = ({ onClick, isActive, children }: any) => (
   <button className="shadow-none" onClick={onClick}>
@@ -24,8 +27,10 @@ const SidenavButton = ({ onClick, isActive, children }: any) => (
 
 const SidenavBar = () => {
   const navigate = useNavigate();
+  const { user, updateUser } = useUserContext();
   const [searchParams, setSearchParams] = useSearchParams();
   const [activeButton, setActiveButton] = useState("all");
+  const [settings, setSettings] = useState(false);
 
   const onLogout = async () => {
     try {
@@ -74,6 +79,14 @@ const SidenavBar = () => {
   const onUnCompleteTasks = () => {
     const query = { status: "unCompleted" };
     setQueryParamAndNavigate(query, "/dashboard/unCompleted-tasks");
+  };
+
+  const onSettings = (action: boolean) => {
+    setSettings(action);
+  };
+
+  const onSettingsSubmit = async (e: any) => {
+    setSettings(false);
   };
 
   return (
@@ -138,7 +151,32 @@ const SidenavBar = () => {
         <TaskOverview />
       </div>
       <div className="p-2 flex flex-col">
-        <div className="flex-1">Welcome User</div>
+        <div className="flex-1">
+          <div className="flex gap-x-2">
+            Welcome {user?.firstName} {user?.lastName}{" "}
+            <button
+              className="bg-primary p-2 w-24 ml-6 flex items-center"
+              onClick={() => onSettings(true)}
+            >
+              Settings
+            </button>
+            {settings && user?.id && (
+              <Dialog
+                contentWidth="medium"
+                dialogIsOpen={settings}
+                header={"Settings"}
+                onUpdate={() => onSettings(false)}
+                content={
+                  <SettingsForm
+                    currentUser={user}
+                    onSubmit={onSettingsSubmit}
+                  />
+                }
+              />
+            )}
+          </div>
+          <div>Total Tasks: {user?.tasks?.length}</div>
+        </div>
         <div className="flex">
           <div className="self-center">
             <button
